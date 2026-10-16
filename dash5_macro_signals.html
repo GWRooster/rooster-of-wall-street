@@ -443,57 +443,57 @@
     <div class="input-grid">
       <div class="input-group">
         <label class="input-label">⬡ Jobs Added (K) · BLS · Next: Jun 5</label>
-        <input class="input-field" id="inp_jobs" type="number" value="115">
+        <input class="input-field" id="inp_jobs" type="text" inputmode="text" autocomplete="off" value="115">
         <div class="lock-row"><button class="lock-btn" id="lock-jobs" onclick="toggleLock('jobs','inp_jobs')">✓ LOCK</button><span class="lock-stamp" id="stamp-jobs">Edit then LOCK to persist</span></div>
       </div>
       <div class="input-group">
         <label class="input-label">⬡ Unemployment Rate % · BLS</label>
-        <input class="input-field" id="inp_unemp" type="number" step="0.1" value="4.3">
+        <input class="input-field" id="inp_unemp" type="text" inputmode="decimal" autocomplete="off" value="4.3">
         <div class="lock-row"><button class="lock-btn" id="lock-unemp" onclick="toggleLock('unemp','inp_unemp')">✓ LOCK</button><span class="lock-stamp" id="stamp-unemp">Edit then LOCK to persist</span></div>
       </div>
       <div class="input-group">
         <label class="input-label">⬡ Wage Growth MoM % · BLS</label>
-        <input class="input-field" id="inp_wage" type="number" step="0.1" value="0.2">
+        <input class="input-field" id="inp_wage" type="text" inputmode="text" autocomplete="off" value="0.2">
         <div class="lock-row"><button class="lock-btn" id="lock-wage" onclick="toggleLock('wage','inp_wage')">✓ LOCK</button><span class="lock-stamp" id="stamp-wage">Edit then LOCK to persist</span></div>
       </div>
       <div class="input-group">
         <label class="input-label">⬡ S&P 50-Day MA · Barchart</label>
-        <input class="input-field" id="inp_ma50" type="number" placeholder="e.g. 7174">
+        <input class="input-field" id="inp_ma50" type="text" inputmode="decimal" autocomplete="off" placeholder="e.g. 7174">
         <div class="lock-row"><button class="lock-btn" id="lock-ma50" onclick="toggleLock('ma50','inp_ma50')">✓ LOCK</button><span class="lock-stamp" id="stamp-ma50">Edit then LOCK to persist</span></div>
       </div>
       <div class="input-group">
         <label class="input-label">⬡ 50-DAY MA BREACH DAYS · Manual count</label>
-        <input class="input-field" id="inp_ma50_breach" type="number" min="0" max="30" placeholder="0 = no breach · days below MA">
+        <input class="input-field" id="inp_ma50_breach" type="text" inputmode="decimal" autocomplete="off" placeholder="0 = no breach · days below MA">
         <div class="lock-row"><button class="lock-btn" id="lock-ma50_breach" onclick="toggleLock('ma50_breach','inp_ma50_breach')">✓ LOCK</button><span class="lock-stamp" id="stamp-ma50_breach">Consecutive sessions SPX closed below 50-day MA — T2 requires 3+</span></div>
       </div>
       <div class="input-group">
         <label class="input-label">⬡ S&P 20-Day MA · Barchart</label>
-        <input class="input-field" id="inp_ma20" type="number" placeholder="e.g. 5580">
+        <input class="input-field" id="inp_ma20" type="text" inputmode="decimal" autocomplete="off" placeholder="e.g. 5580">
         <div class="lock-row"><button class="lock-btn" id="lock-ma20" onclick="toggleLock('ma20','inp_ma20')">✓ LOCK</button><span class="lock-stamp" id="stamp-ma20">Edit then LOCK to persist</span></div>
       </div>
       <div class="input-group">
         <label class="input-label">⬡ 30-Yr Treasury High This Week %</label>
-        <input class="input-field" id="inp_t30" type="number" step="0.01" value="5.02">
+        <input class="input-field" id="inp_t30" type="text" inputmode="decimal" autocomplete="off" value="5.02">
         <div class="lock-row"><button class="lock-btn" id="lock-t30" onclick="toggleLock('t30','inp_t30')">✓ LOCK</button><span class="lock-stamp" id="stamp-t30">Edit then LOCK to persist</span></div>
       </div>
       <div class="input-group">
         <label class="input-label">⬡ S&P 493 Qtr EPS % · Ask system</label>
-        <input class="input-field" id="inp_m05_493_qtr" type="number" step="0.1" placeholder="e.g. 10.1">
+        <input class="input-field" id="inp_m05_493_qtr" type="text" inputmode="text" autocomplete="off" placeholder="e.g. 10.1">
         <div class="lock-row"><button class="lock-btn" id="lock-m05_493_qtr" onclick="toggleLock('m05_493_qtr','inp_m05_493_qtr')">✓ LOCK</button><span class="lock-stamp" id="stamp-m05_493_qtr">Edit then LOCK to persist</span></div>
       </div>
       <div class="input-group">
         <label class="input-label">⬡ S&P 493 FY Estimate % · Ask system</label>
-        <input class="input-field" id="inp_m05_493_ann" type="number" step="0.1" placeholder="e.g. 17.9">
+        <input class="input-field" id="inp_m05_493_ann" type="text" inputmode="text" autocomplete="off" placeholder="e.g. 17.9">
         <div class="lock-row"><button class="lock-btn" id="lock-m05_493_ann" onclick="toggleLock('m05_493_ann','inp_m05_493_ann')">✓ LOCK</button><span class="lock-stamp" id="stamp-m05_493_ann">Edit then LOCK to persist</span></div>
       </div>
       <div class="input-group">
         <label class="input-label">⬡ Mag7 Qtr EPS % · Ask system</label>
-        <input class="input-field" id="inp_m05_mag7" type="number" step="0.1" placeholder="e.g. 22.8">
+        <input class="input-field" id="inp_m05_mag7" type="text" inputmode="text" autocomplete="off" placeholder="e.g. 22.8">
         <div class="lock-row"><button class="lock-btn" id="lock-m05_mag7" onclick="toggleLock('m05_mag7','inp_m05_mag7')">✓ LOCK</button><span class="lock-stamp" id="stamp-m05_mag7">Edit then LOCK to persist</span></div>
       </div>
       <div class="input-group">
         <label class="input-label">⬡ Q2 Productivity QoQ% · BLS Aug 7</label>
-        <input class="input-field" id="inp_prodQ2" type="number" step="0.1" placeholder="Pending Aug 7">
+        <input class="input-field" id="inp_prodQ2" type="text" inputmode="text" autocomplete="off" placeholder="Pending Aug 7">
         <div class="lock-row"><button class="lock-btn" id="lock-prodQ2" onclick="toggleLock('prodQ2','inp_prodQ2')">✓ LOCK</button><span class="lock-stamp" id="stamp-prodQ2">Edit then LOCK to persist</span></div>
       </div>
       <div class="input-group">
@@ -503,12 +503,12 @@
       </div>
       <div class="input-group">
         <label class="input-label">⬤ S&P Override (if auto-fetch fails)</label>
-        <input class="input-field" id="inp_spx_override" type="number" placeholder="e.g. 5842">
+        <input class="input-field" id="inp_spx_override" type="text" inputmode="decimal" autocomplete="off" placeholder="e.g. 5842">
         <div class="lock-row"><button class="lock-btn" id="lock-spx_ovr" onclick="toggleLock('spx_ovr','inp_spx_override')">✓ LOCK</button><span class="lock-stamp" id="stamp-spx_ovr">Edit then LOCK to persist</span></div>
       </div>
       <div class="input-group">
         <label class="input-label">⬤ 10-Yr Yield Override % · FRED (if auto-fetch fails)</label>
-        <input class="input-field" id="inp_tnx_override" type="number" step="0.01" placeholder="e.g. 5842">
+        <input class="input-field" id="inp_tnx_override" type="text" inputmode="decimal" autocomplete="off" placeholder="e.g. 5842">
         <div class="lock-row"><button class="lock-btn" id="lock-tnx_ovr" onclick="toggleLock('tnx_ovr','inp_tnx_override')">✓ LOCK</button><span class="lock-stamp" id="stamp-tnx_ovr">Edit then LOCK to persist</span></div>
       </div>
     </div>
@@ -1121,7 +1121,7 @@ function toggleLock(key, inpId){
     inp.classList.remove('locked');
     btn.textContent = '✓ LOCK';
     btn.classList.remove('locked');
-    if(stamp) stamp.textContent = 'Edit then LOCK to persist';
+    if(stamp){ stamp.textContent = SIGNED_FIELDS.has(key) ? 'Edit then LOCK — include + or − sign' : 'Edit then LOCK to persist'; stamp.style.color = ''; }
   } else {
     // Lock
     if(!inp.value && inp.value !== '0') return;
@@ -1131,6 +1131,7 @@ function toggleLock(key, inpId){
       inp.focus();
       return; // refuse to lock without a sign
     }
+    if(stamp) stamp.style.color = '';               // clear any prior sign warning
     const cleanV = sanitizeNumeric(rawV, key);
     const val = (cleanV===null) ? rawV : cleanV;   // store canonical number; text passes through
     const now = new Date();

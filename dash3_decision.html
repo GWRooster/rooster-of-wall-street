@@ -357,9 +357,9 @@
       <div class="tc-pct">18% · TRAJECTORY CONFIRMATION</div>
       <div class="tc-badge b-watch" id="tb2">WATCHING</div>
       <div class="tc-rules">
-        <div class="tc-rule"><div class="rd"></div><div class="rt">S&P sustained below 50-day MA — 3+ consecutive sessions</div></div>
-        <div class="tc-rule"><div class="rd a"></div><div class="rt a">AI Bear composite ≥ 35 — currently ~<span id="t2AiScore">23</span></div></div>
-        <div class="tc-rule"><div class="rd a"></div><div class="rt a">Macro composite ≥ 35 — currently ~<span id="t2MacroScore">20</span></div></div>
+        <div class="tc-rule" id="t2r1"><div class="rd"></div><div class="rt">S&P sustained below 50-day MA — 3+ consecutive sessions <span class="t2mk"></span></div></div>
+        <div class="tc-rule" id="t2r2"><div class="rd"></div><div class="rt">AI Bear composite ≥ 35 — currently ~<span id="t2AiScore">—</span> <span class="t2mk"></span></div></div>
+        <div class="tc-rule" id="t2r3"><div class="rd"></div><div class="rt">Macro composite ≥ 35 — currently ~<span id="t2MacroScore">—</span> <span class="t2mk"></span></div></div>
         <div class="tc-rule"><div class="rd"></div><div class="rt">ALL THREE required simultaneously — not any one alone</div></div>
         <div class="tc-rule"><div class="rd"></div><div class="rt">Exits on downward trajectory — not trying to catch the top</div></div>
       </div>
@@ -583,6 +583,26 @@ function calcMacro(){
   return Math.round(MACRO_SIGS.reduce((a,s)=>a+s.score,0)/MACRO_SIGS.length);
 }
 function calcMaster(a,m){return Math.round((a+m)/2);}
+// T2 card: each condition row is painted from the live evaluateT2() result.
+// Met = amber ✓ · not met = dim ✗ · all three met = red, and the badge flags it
+// (unless the T2 dropdown is already set to executed / execute-now — that stays the owner's call).
+let LAST_T2=null;
+function paintT2Card(t2){
+  if(t2) LAST_T2=t2; t2=LAST_T2; if(!t2) return;
+  const all=t2.met===3;
+  [['t2r1',t2.ma],['t2r2',t2.ai],['t2r3',t2.mac]].forEach(([id,ok])=>{
+    const row=document.getElementById(id); if(!row) return;
+    const cls= ok ? (all?' r':' a') : '';
+    row.querySelector('.rd').className='rd'+cls;
+    row.querySelector('.rt').className='rt'+cls;
+    row.querySelector('.t2mk').textContent= ok ? '✓' : '✗';
+  });
+  const sel=document.getElementById('t2sel'), badge=document.getElementById('tb2'), card=document.getElementById('tc2');
+  if(!sel||!badge||!card) return;
+  if(sel.value==='yes'||sel.value==='triggered') return;
+  if(all){ card.className='tc fire'; badge.className='tc-badge b-fire'; badge.textContent='⚡ ALL 3 MET'; }
+  else { card.className='tc watching'; badge.className='tc-badge b-watch'; badge.textContent='WATCHING · '+t2.met+'/3'; }
+}
 // T2 condition 1 is read from Dash 5's exported M02 card state (synced key),
 // so Dash 3 never re-derives the breach logic itself.
 function evaluateT2(ai, mac){
@@ -737,6 +757,7 @@ function updateScores(){
   // T2 tranche card + thesis modal both quote the live composites inline
   ['t2AiScore','thesisAiScore'].forEach(id=>{ const el=document.getElementById(id); if(el) el.textContent=ai; });
   ['t2MacroScore','thesisMacroScore'].forEach(id=>{ const el=document.getElementById(id); if(el) el.textContent=mac; });
+  paintT2Card(t2);
 }
 
 function saveTrancheState(){
@@ -797,6 +818,7 @@ function updateExec(){
       else{card.className='tc watching';badge.className='tc-badge b-watch';badge.textContent='WATCHING';}
     }
   });
+  paintT2Card();
   document.getElementById('protTotal').textContent='$'+prot.toLocaleString();
   document.getElementById('protPct').textContent=Math.round(prot/10000)+'% sidelined to stable fund';
 }

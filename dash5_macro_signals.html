@@ -346,9 +346,9 @@
         <div class="signal-metrics">
           <div class="metric-row"><div class="metric-label">S&P 500 CURRENT</div><div class="metric-value live" id="m02-spx">—</div></div>
           <div class="metric-row"><div class="metric-label">50-DAY MA</div><div class="metric-value" id="m02-ma50">—</div></div>
-          <div class="metric-row"><div class="metric-label">DISTANCE TO T1</div><div class="metric-value" id="m02-dist">—</div></div>
+          <div class="metric-row"><div class="metric-label">DISTANCE TO 50-DAY MA</div><div class="metric-value" id="m02-dist">—</div></div>
         </div>
-        <div class="trigger-line" id="trig-2b">T1 FIRE: Close below 50-day MA on above-average volume. T2 FIRE: Close below 5,800 (~10% correction). T3 FIRE: Close below 5,450 OR death cross confirmed. Feb ATH: 6,147.</div>
+        <div class="trigger-line" id="trig-2b">GREEN: S&amp;P above 50-day MA · YELLOW: 1–2 sessions below · AMBER: 3+ consecutive sessions below = T2 condition 1 of 3 met. Full T2 also requires AI composite ≥35 AND Macro composite ≥35 (checked on Dash 3). Update breach-day count after each close.</div>
       </div>
 
       <div class="signal-card amber" id="card-2c">
@@ -357,10 +357,10 @@
         <div class="signal-edu">Rising long-term yields directly compress equity valuations by increasing the discount rate applied to future earnings. The 30-yr breaching 5% is a structural warning — it signals the bond market does not believe the Fed has inflation under control, regardless of what equities are doing.</div>
         <div class="signal-metrics">
           <div class="metric-row"><div class="metric-label">10-YR YIELD</div><div class="metric-value live" id="m03-tnx">—</div></div>
-          <div class="metric-row"><div class="metric-label">30-YR HIGH (WK)</div><div class="metric-value amber" id="m03-t30">5.02%</div></div>
+          <div class="metric-row"><div class="metric-label">30-YR HIGH (WK)</div><div class="metric-value" id="m03-t30">—</div></div>
           <div class="metric-row"><div class="metric-label">GAP TO T1 (4.60%)</div><div class="metric-value" id="m03-gap">—</div></div>
         </div>
-        <div class="trigger-line" id="trig-2c">T1 FIRE: 10-yr closes above 4.60%. T2 FIRE: 10-yr closes above 4.80%. ⚠ 30-yr breached 5% intraday May 4 — WARNING ACTIVE. FRED: fred.stlouisfed.org/series/DGS10</div>
+        <div class="trigger-line" id="trig-2c">T1 FIRE: 10-yr closes above 4.60%. T2 FIRE: 10-yr closes above 4.80%. YELLOW WATCH: 30-yr at or above 5%. FRED: fred.stlouisfed.org/series/DGS10</div>
       </div>
 
     </div>
@@ -377,7 +377,7 @@
         <div class="signal-edu">The entire AI bull case rests on a productivity supercycle — the idea that AI tools will dramatically increase output per worker. If two consecutive quarters show productivity below 1.5% annualized, the supercycle thesis fails. This directly undermines the revenue justification for $725B in annual AI capex.</div>
         <div class="signal-metrics">
           <div class="metric-row"><div class="metric-label">Q1 2026 QOQ ANN.</div><div class="metric-value live" style="color:var(--red)">0.8% ⚠</div></div>
-          <div class="metric-row"><div class="metric-label">Q2 2026 (PENDING)</div><div class="metric-value" id="m04-q2">Pending Aug 7</div></div>
+          <div class="metric-row"><div class="metric-label">LATEST QTR (LOCKED)</div><div class="metric-value" id="m04-q2">—</div></div>
           <div class="metric-row"><div class="metric-label">LABOR SHARE</div><div class="metric-value" style="color:var(--red)">54.1% — Record low</div></div>
         </div>
         <div class="trigger-line" id="trig-3a">YELLOW FLAG ACTIVE: Q1 at 0.8% — 1 of 2 quarters below 1.5%. PENDING D-DAY: Aug 7, 2026 BLS release — modal will require update after this date. T3 FIRE: Q2 also below 1.5%.</div>
@@ -409,13 +409,13 @@
       <div class="signal-card green" id="card-3c">
         <div class="card-header"><div class="signal-number">M06 — CHART STRUCTURE</div><div style="display:flex;align-items:center;gap:8px;"><span class="freshness-badge" id="stale-m06"></span><div class="rag-dot" id="dot-m06"></div></div></div>
         <div class="signal-name">LOWER HIGH CONFIRMED ON CHART</div>
-        <div class="signal-edu">A lower high pattern confirms the rally has failed. The sequence: rally stalls below the Feb 6,147 ATH → 3–5 consecutive lower closes → S&P breaks back below 5,450 with volume confirmation. This is the technical pattern that precedes sustained bear markets, not temporary corrections.</div>
+        <div class="signal-edu">A lower high pattern confirms the rally has failed. The sequence: rally stalls below the prior record high → consecutive lower closes → S&amp;P loses its 20-day moving average and fails to reclaim it. This is the technical pattern that precedes sustained declines, not one-day selloffs.</div>
         <div class="signal-metrics">
-          <div class="metric-row"><div class="metric-label">FEB ATH REFERENCE</div><div class="metric-value">6,147</div></div>
+          <div class="metric-row"><div class="metric-label">DISTANCE TO 20-DAY MA</div><div class="metric-value" id="m06-dist">—</div></div>
           <div class="metric-row"><div class="metric-label">CURRENT S&P</div><div class="metric-value live" id="m06-spx">—</div></div>
           <div class="metric-row"><div class="metric-label">20-DAY MA</div><div class="metric-value" id="m06-ma20">—</div></div>
         </div>
-        <div class="trigger-line" id="trig-3c">NOT ACTIVE: Rally must first stall below 6,147 ATH → confirm lower high → then break 5,450 on volume. T3 FIRE: Full sequence confirmed. Enter 20-day MA from Barchart.com/stocks/quotes/$SPX/technical-analysis</div>
+        <div class="trigger-line" id="trig-3c">GREEN: S&amp;P above 20-day MA · AMBER: S&amp;P closes below 20-day MA (lower-high watch). Tier 3 downstream confirmation. Enter 20-day MA from Barchart.com/stocks/quotes/$SPX/technical-analysis</div>
       </div>
 
       <div class="signal-card amber" id="card-3d">
@@ -443,22 +443,22 @@
     <div class="input-grid">
       <div class="input-group">
         <label class="input-label">⬡ Jobs Added (K) · BLS · Next: Jun 5</label>
-        <input class="input-field" id="inp_jobs" type="text" inputmode="text" autocomplete="off" value="115">
+        <input class="input-field" id="inp_jobs" type="text" inputmode="text" autocomplete="off" placeholder="e.g. +165 (thousands, sign required)">
         <div class="lock-row"><button class="lock-btn" id="lock-jobs" onclick="toggleLock('jobs','inp_jobs')">✓ LOCK</button><span class="lock-stamp" id="stamp-jobs">Edit then LOCK to persist</span></div>
       </div>
       <div class="input-group">
         <label class="input-label">⬡ Unemployment Rate % · BLS</label>
-        <input class="input-field" id="inp_unemp" type="text" inputmode="decimal" autocomplete="off" value="4.3">
+        <input class="input-field" id="inp_unemp" type="text" inputmode="decimal" autocomplete="off" placeholder="e.g. 4.1">
         <div class="lock-row"><button class="lock-btn" id="lock-unemp" onclick="toggleLock('unemp','inp_unemp')">✓ LOCK</button><span class="lock-stamp" id="stamp-unemp">Edit then LOCK to persist</span></div>
       </div>
       <div class="input-group">
         <label class="input-label">⬡ Wage Growth MoM % · BLS</label>
-        <input class="input-field" id="inp_wage" type="text" inputmode="text" autocomplete="off" value="0.2">
+        <input class="input-field" id="inp_wage" type="text" inputmode="text" autocomplete="off" placeholder="e.g. +0.2">
         <div class="lock-row"><button class="lock-btn" id="lock-wage" onclick="toggleLock('wage','inp_wage')">✓ LOCK</button><span class="lock-stamp" id="stamp-wage">Edit then LOCK to persist</span></div>
       </div>
       <div class="input-group">
         <label class="input-label">⬡ S&P 50-Day MA · Barchart</label>
-        <input class="input-field" id="inp_ma50" type="text" inputmode="decimal" autocomplete="off" placeholder="e.g. 7174">
+        <input class="input-field" id="inp_ma50" type="text" inputmode="decimal" autocomplete="off" placeholder="e.g. 7686">
         <div class="lock-row"><button class="lock-btn" id="lock-ma50" onclick="toggleLock('ma50','inp_ma50')">✓ LOCK</button><span class="lock-stamp" id="stamp-ma50">Edit then LOCK to persist</span></div>
       </div>
       <div class="input-group">
@@ -473,7 +473,7 @@
       </div>
       <div class="input-group">
         <label class="input-label">⬡ 30-Yr Treasury High This Week %</label>
-        <input class="input-field" id="inp_t30" type="text" inputmode="decimal" autocomplete="off" value="5.02">
+        <input class="input-field" id="inp_t30" type="text" inputmode="decimal" autocomplete="off" placeholder="e.g. 5.30">
         <div class="lock-row"><button class="lock-btn" id="lock-t30" onclick="toggleLock('t30','inp_t30')">✓ LOCK</button><span class="lock-stamp" id="stamp-t30">Edit then LOCK to persist</span></div>
       </div>
       <div class="input-group">
@@ -492,13 +492,13 @@
         <div class="lock-row"><button class="lock-btn" id="lock-m05_mag7" onclick="toggleLock('m05_mag7','inp_m05_mag7')">✓ LOCK</button><span class="lock-stamp" id="stamp-m05_mag7">Edit then LOCK to persist</span></div>
       </div>
       <div class="input-group">
-        <label class="input-label">⬡ Q2 Productivity QoQ% · BLS Aug 7</label>
-        <input class="input-field" id="inp_prodQ2" type="text" inputmode="text" autocomplete="off" placeholder="Pending Aug 7">
+        <label class="input-label">⬡ Latest-Qtr Productivity QoQ% · BLS</label>
+        <input class="input-field" id="inp_prodQ2" type="text" inputmode="text" autocomplete="off" placeholder="e.g. 1.4">
         <div class="lock-row"><button class="lock-btn" id="lock-prodQ2" onclick="toggleLock('prodQ2','inp_prodQ2')">✓ LOCK</button><span class="lock-stamp" id="stamp-prodQ2">Edit then LOCK to persist</span></div>
       </div>
       <div class="input-group">
         <label class="input-label">⬡ Warsh Status (type FIRE to trigger M07)</label>
-        <input class="input-field" id="inp_warsh" type="text" value="Pending">
+        <input class="input-field" id="inp_warsh" type="text" placeholder="FIRE / WATCH / CLEAR — or Pending">
         <div class="lock-row"><button class="lock-btn" id="lock-warsh" onclick="toggleLock('warsh','inp_warsh')">✓ LOCK</button><span class="lock-stamp" id="stamp-warsh">Edit then LOCK to persist</span></div>
       </div>
       <div class="input-group">
@@ -618,12 +618,12 @@ const M5_MODAL_FIELDS = [
   { key:'ma50_breach', sig:'M02', label:'50-DAY MA BREACH DAYS', cadence:'weekly',
     method:'manual-link',
     url:'https://www.barchart.com/stocks/quotes/$SPX/technical-analysis',
-    instruction:'Count consecutive sessions SPX closed below 50-day MA. Enter 0 if above MA. T2 condition requires 3+ sessions. Current MA: 7,174.',
+    instruction:'Count consecutive sessions SPX closed below 50-day MA. Enter 0 if above MA. T2 condition requires 3+ sessions.',
     hint:'0' },
   { key:'ma50',     sig:'M02', label:'S&P 50-DAY MA',         cadence:'weekly',
     method:'manual-link',
     url:'https://www.barchart.com/stocks/quotes/$SPX/technical-analysis',
-    instruction:'Barchart → $SPX Technical Analysis → Moving Averages table → 50-day Simple Moving Average value. Current: 7,174',
+    instruction:'Barchart → $SPX Technical Analysis → Moving Averages table → 50-day Simple Moving Average value.',
     hint:'e.g. 7174' },
   { key:'ma20',     sig:'M06', label:'S&P 20-DAY MA',         cadence:'weekly',
     method:'manual-link',
@@ -682,7 +682,7 @@ const M5_MODAL_FIELDS = [
     method:'manual-link',
     url:'https://www.bls.gov/lpc/',
     instruction:'BLS Productivity & Costs → latest release → Nonfarm business sector labor productivity QoQ annualized %',
-    hint:'Pending Aug 7' },
+    hint:'Latest quarter, QoQ annualized' },
   { key:'warsh',    sig:'M07', label:'WARSH / TREASURY STATUS', cadence:'monthly',
     pendingUntil:'2026-08-05',
     method:'manual-ask-system',
@@ -1335,6 +1335,7 @@ function updateSignals(){
   renderM05History();
   if(spx)            setVal('m06-spx',   spx.toLocaleString(undefined,{maximumFractionDigits:0}));
   if(!isNaN(ma20))   setVal('m06-ma20',  ma20.toLocaleString());
+  if(spx&&!isNaN(ma20)){ const d=Math.round(spx-ma20); setVal('m06-dist',(d>0?'+':'')+d+' pts'); }
   if(warsh)          setVal('m07-warsh', warsh);
 
   // Update card RAG states based on current values
@@ -1347,41 +1348,46 @@ function updateSignals(){
     if(d) d.className='rag-dot '+ragClass;
   }
 
+  // Every signal records its computed RAG in M_RAG. The cards, the states
+  // export (Dash 4/3/Summary) and the composite all read this one object, so
+  // the composite can never disagree with what the cards show.
+  // 'blue' = no data entered yet (pending) — never a static HTML default.
+  const M_RAG = {};
+  function apply(sig, dotId, cardId, rag){ M_RAG[sig]=rag; setDot(dotId, rag); setCard(cardId, rag); }
+
   // M01 Labor
   if(!isNaN(jobs)||!isNaN(unemp)){
     const f=(!isNaN(jobs)&&jobs<30)||(!isNaN(unemp)&&unemp>=4.4);
     const w=(!isNaN(jobs)&&jobs<75)||(!isNaN(unemp)&&unemp>=4.35);
-    const rag=f?'red':w?'amber':'green';
-    setDot('dot-m01', rag); setCard('card-2a', rag);
-  }
+    apply('M01','dot-m01','card-2a', f?'red':w?'amber':'green');
+  } else apply('M01','dot-m01','card-2a','blue');
 
   // M02 S&P Technical — T2 framework requires SUSTAINED breach 3+ consecutive sessions
-  // Single day below MA = yellow (watch). 3+ consecutive days = amber (T2 condition active).
-  // Human enters breach day count in 'ma50_breach' field (0 = no breach, 1/2/3+ = days)
+  // Above MA = green. 1–2 sessions below = yellow (watch). 3+ sessions below = amber (T2 condition met).
+  // Breach day count comes from the 'ma50_breach' field (0 = no breach, 1/2/3+ = days).
+  let m02BreachDays = 0;
   if(spx&&!isNaN(ma50)){
     let d5={}; try{d5=JSON.parse(localStorage.getItem('rooster_dash5_v1'))||{};}catch(e){}
-    const breachDays = (sv(d5['ma50_breach'],'ma50_breach')||0);
-    const belowMA    = spx < ma50;
+    const bd = sv(d5['ma50_breach'],'ma50_breach');
+    m02BreachDays = isNaN(bd) ? 0 : bd;
+    const belowMA = spx < ma50;
     let rag = 'green';
-    if(belowMA && breachDays >= 3) rag = 'amber';        // T2 condition active
-    else if(belowMA && breachDays >= 1) rag = 'yellow';  // watching
-    else if(belowMA) rag = 'yellow';                     // just crossed — watch
-    setDot('dot-m02', rag); setCard('card-2b', rag);
-    // Update distance display
-    if(!isNaN(ma50)){ const d=Math.round(spx-ma50); setVal('m02-dist',(d>0?'+':'')+d+' pts · '+(breachDays>0?breachDays+'d breach':'above MA')); }
-  }
+    if(belowMA && m02BreachDays >= 3) rag = 'amber';   // T2 condition met
+    else if(belowMA) rag = 'yellow';                   // breach under way, not yet sustained
+    apply('M02','dot-m02','card-2b', rag);
+    const d=Math.round(spx-ma50);
+    setVal('m02-dist',(d>0?'+':'')+d+' pts · '+(belowMA?(m02BreachDays>0?m02BreachDays+'d below MA':'below MA — enter breach days'):'above MA'));
+  } else apply('M02','dot-m02','card-2b','blue');
 
   // M03 Bond Market
   if(tnx){
-    const rag=tnx>=4.80?'red':tnx>=4.60?'amber':t30>=5?'yellow':'green';
-    setDot('dot-m03', rag); setCard('card-2c', rag);
-  }
+    apply('M03','dot-m03','card-2c', tnx>=4.80?'red':tnx>=4.60?'amber':(!isNaN(t30)&&t30>=5)?'yellow':'green');
+  } else apply('M03','dot-m03','card-2c','blue');
 
   // M04 Productivity
   if(!isNaN(prodQ2)){
-    const rag=prodQ2<1.5?'red':'green';
-    setDot('dot-m04', rag); setCard('card-3a', rag);
-  }
+    apply('M04','dot-m04','card-3a', prodQ2<1.5?'red':'green');
+  } else apply('M04','dot-m04','card-3a','blue');
 
   // M05 Earnings Breadth — trajectory-based RAG
   const b493  = sv(m5Load()['m05_493_qtr'],'m05_493_qtr');
@@ -1390,29 +1396,24 @@ function updateSignals(){
     const gap    = (!isNaN(b493a)) ? (b493a - b493) : 0;
     const isRed  = b493 < 8  || gap > 10;
     const isAmb  = b493 < 15 || gap > 5;
-    const rag    = isRed ? 'red' : isAmb ? 'amber' : 'green';
-    setDot('dot-m05', rag);
-    const card = document.getElementById('card-3b');
-    if(card){
-      card.className = card.className.replace(/\b(blue|green|amber|red|yellow|pending)\b/g,'').trim();
-      card.className = (card.className+' '+rag).replace(/\s+/g,' ').trim();
-    }
-  }
+    apply('M05','dot-m05','card-3b', isRed ? 'red' : isAmb ? 'amber' : 'green');
+  } else apply('M05','dot-m05','card-3b','blue');
 
-  // M07 Warsh
-  if(warsh){
-    const rag=warsh.toUpperCase().includes('FIRE')?'red':'amber';
-    setDot('dot-m07', rag); setCard('card-3d', rag);
-  }
-
-  // M06 Lower High — based on SPX vs MA20
+  // M06 Lower High — S&P below its 20-day MA = lower-high watch
   if(spx && !isNaN(ma20)){
-    const rag = spx < ma20 ? 'amber' : 'green';
-    setDot('dot-m06', rag); setCard('card-3c', rag);
-  }
+    apply('M06','dot-m06','card-3c', spx < ma20 ? 'amber' : 'green');
+  } else apply('M06','dot-m06','card-3c','blue');
 
-  // Update Macro composite header
-  const macroScore = calcMacroComposite(jobs,unemp,tnx,t30,b493,prodQ2,warsh,spx,ma50);
+  // M07 Treasury / Warsh — keyword status field.
+  // FIRE → red · WATCH/ELEVATED/any other note → amber · CLEAR/NONE/NO CHANGE → green · blank/PENDING → no data
+  const w7 = (warsh||'').trim().toUpperCase();
+  if(!w7 || w7==='PENDING' || w7.startsWith('PENDING')) apply('M07','dot-m07','card-3d','blue');
+  else if(w7.includes('FIRE')) apply('M07','dot-m07','card-3d','red');
+  else if(/\b(CLEAR|NONE|NO CHANGE|NOMINAL|GREEN)\b/.test(w7)) apply('M07','dot-m07','card-3d','green');
+  else apply('M07','dot-m07','card-3d','amber');
+
+  // Update Macro composite header — derived from the same M_RAG the cards show
+  const macroScore = calcMacroComposite(M_RAG);
   const mEl = document.getElementById('macroComposite');
   if(mEl){ mEl.textContent = macroScore; mEl.className = 'composite-score '+cc(macroScore); }
   // Save composite so Dash 4 heat map can read it
@@ -1484,17 +1485,14 @@ function renderM05History(){
   el.innerHTML = rows;
 }
 
-function calcMacroComposite(jobs,unemp,tnx,t30,breadth,prodQ2,warsh,spx,ma50){
-  let scores = [5,5,5,10,5,5,5]; // defaults
-  if(!isNaN(jobs)){ scores[0] = jobs<30?85:jobs<75?45:5; }
-  if(!isNaN(unemp)&&unemp>=4.4){ scores[0] = Math.max(scores[0],45); }
-  if(spx&&!isNaN(ma50)&&spx<ma50){ scores[1]=45; }
-  if(tnx){ scores[2] = tnx>=4.80?85:tnx>=4.60?45:t30>=5?25:5; }
-  if(!isNaN(prodQ2)&&prodQ2<1.5){ scores[3]=85; }
-  else if(prodQ2>=1.5){ scores[3]=5; }
-  if(!isNaN(breadth)){ scores[4]=breadth<8?85:breadth<12?25:5; }
-  if(warsh&&warsh.toUpperCase().includes('FIRE')){ scores[6]=85; }
-  return Math.round(scores.reduce((a,b)=>a+b,0)/scores.length);
+// Composite = average of the seven signals' card states on the original
+// 5/25/45/85 severity scale (green/yellow/amber/red). No-data signals score 5,
+// the same default the old parallel formula used, so the ≥35 T2 line keeps its meaning.
+const M_RAG_SCORE = { green:5, yellow:25, amber:45, red:85, blue:5 };
+function calcMacroComposite(mRag){
+  const ids = ['M01','M02','M03','M04','M05','M06','M07'];
+  const total = ids.reduce((a,id)=>a+(M_RAG_SCORE[mRag[id]] ?? 5),0);
+  return Math.round(total/ids.length);
 }
 
 document.addEventListener('DOMContentLoaded', async ()=>{

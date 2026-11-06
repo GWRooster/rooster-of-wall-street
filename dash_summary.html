@@ -347,6 +347,14 @@ function loadD1States(){ try{ return (JSON.parse(localStorage.getItem('rooster_d
 function loadD5States(){ try{ return (JSON.parse(localStorage.getItem('rooster_dash5_states'))||{states:[]}).states||[]; }catch(e){ return []; } }
 function loadTrancheState(){ try{ return JSON.parse(localStorage.getItem('rooster_tranches_v1'))||{t1:'yes',t2:'no',t3:'no',t4:'no'}; }catch(e){ return {t1:'yes',t2:'no',t3:'no',t4:'no'}; } }
 function trancheState(v){ return v==='yes'?'executed':v==='triggered'?'triggered':'watching'; }
+// T2 = all three at once: Dash 5 M02 AMBER/RED (S&P 3+ sessions below 50-day MA),
+// AI composite ≥35, Macro composite ≥35. Same rule as Dash 3's evaluateT2.
+function evaluateT2(ai,mac,d5States){
+  const m02=(d5States||[]).find(x=>x.id==='M02');
+  const ma=!!m02&&(m02.rag==='amber'||m02.rag==='red');
+  const aiOk=ai>=35, macOk=mac>=35;
+  return {ma,ai:aiOk,mac:macOk,aiScore:ai,macScore:mac,met:[ma,aiOk,macOk].filter(Boolean).length};
+}
 function calcComposite(key,statesArr){
   const comp=localStorage.getItem(key);
   if(comp!==null&&comp!==''&&!isNaN(parseInt(comp))) return parseInt(comp);
@@ -364,7 +372,7 @@ function updateClock(){
 
 // ── HERO ── mirrors dash3's real tranche framing (T1 already executed, T2
 // watches at composite 35) instead of the old 25/40/60/80 severity ladder.
-function updateHero(master){
+function updateHero(master,t2){
   const state=master<25?'nominal':master<50?'watch':'action';
   const col=cc(master);
   document.getElementById('hero').className='hero '+state;
@@ -376,8 +384,8 @@ function updateHero(master){
   const tr=loadTrancheState();
   const ins=document.getElementById('heroInstruction');
   if(tr.t2==='yes'){ ins.innerHTML='<strong>T2 executed.</strong> $400K now in stable fund. Watching T3 conditions.'; }
-  else if(master>=35){ ins.innerHTML='<strong>T2 threshold crossed.</strong> Confirm all three conditions on Dash 3.'; }
-  else{ const dist=Math.max(0,35-master); ins.innerHTML=`T1 executed · T2 watches at 35 — <strong>${dist} pts away.</strong>`; }
+  else if(t2.met===3){ ins.innerHTML='<strong>T2 FIRE — all three conditions met.</strong> Open Dash 3.'; }
+  else{ ins.innerHTML=`T1 executed · <strong>T2 ${t2.met} of 3 met</strong> — S&amp;P below 50-day MA 3+ days ${t2.ma?'✓':'✗'} · AI ${t2.aiScore}/35 ${t2.ai?'✓':'✗'} · Macro ${t2.macScore}/35 ${t2.mac?'✓':'✗'}`; }
 }
 
 // ── DUAL SYSTEM ──
@@ -411,7 +419,8 @@ function updateSystems(ai,mac,d1States,d5States){
 // reading rooster_tranches_v1 for executed/triggered state (set on dash3).
 function buildTranches(ai,mac,master,d5States){
   const tr=loadTrancheState();
-  const t2pct=Math.min((master/35)*100,100);
+  const t2=evaluateT2(ai,mac,d5States);
+  const t2pct=Math.round(t2.met/3*100);
   const d5Map={}; d5States.forEach(s=>{d5Map[s.id]=s;});
   const t3keys=['M04','M05','M07'];
   const t3hit=t3keys.filter(k=>d5Map[k]&&d5Map[k].rag!=='green').length;
@@ -419,7 +428,7 @@ function buildTranches(ai,mac,master,d5States){
 
   const rows=[
     {letter:'T1',amount:'$200K · stable value · executed',state:trancheState(tr.t1),pct:tr.t1==='yes'?100:0,status:tr.t1==='yes'?'EXECUTED':(tr.t1==='triggered'?'TRIGGERED':'WATCHING')},
-    {letter:'T2',amount:'$200K · S&P<50MA + AI≥35 + Macro≥35',state:trancheState(tr.t2),pct:t2pct,status:tr.t2==='yes'?'EXECUTED':(tr.t2==='triggered'?'TRIGGERED':Math.max(0,35-master)+' PTS')},
+    {letter:'T2',amount:'$200K · S&P<50MA + AI≥35 + Macro≥35',state:trancheState(tr.t2),pct:t2pct,status:tr.t2==='yes'?'EXECUTED':(tr.t2==='triggered'?'TRIGGERED':t2.met+'/3 COND.')},
     {letter:'T3',amount:'$200K · bonus, only after T2 exits',state:trancheState(tr.t3),pct:t3pct,status:tr.t3==='yes'?'EXECUTED':(tr.t3==='triggered'?'TRIGGERED':t3hit+'/3 COND.')},
     {letter:'RE',amount:'$500K long hold · re-entry plan',state:'future',pct:0,status:'FUTURE'},
   ];
@@ -555,7 +564,7 @@ function render(){
   const ai=calcComposite('rooster_dash1_composite',d1States);
   const mac=calcComposite('rooster_dash5_composite',d5States);
   const master=Math.round((ai+mac)/2);
-  updateHero(master);
+  updateHero(master,evaluateT2(ai,mac,d5States));
   updateSystems(ai,mac,d1States,d5States);
   buildTranches(ai,mac,master,d5States);
   buildUpdateList(d1States,d5States);

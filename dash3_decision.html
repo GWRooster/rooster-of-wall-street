@@ -270,7 +270,7 @@
       <div class="master-score amber" id="masterScore">23</div>
       <div class="master-status amber" id="masterStatus">WATCH</div>
       <div class="master-div"></div>
-      <div class="master-prox" id="t1prox">T1 TRIGGERS AT 25<br>2 PTS AWAY</div>
+      <div class="master-prox" id="t1prox">T2 STATUS<br>LOADING…</div>
     </div>
 
     <div class="comp-panel macro">
@@ -583,6 +583,17 @@ function calcMacro(){
   return Math.round(MACRO_SIGS.reduce((a,s)=>a+s.score,0)/MACRO_SIGS.length);
 }
 function calcMaster(a,m){return Math.round((a+m)/2);}
+// T2 condition 1 is read from Dash 5's exported M02 card state (synced key),
+// so Dash 3 never re-derives the breach logic itself.
+function evaluateT2(ai, mac){
+  let m02 = null;
+  try{ const st = JSON.parse(localStorage.getItem('rooster_dash5_states'))||{}; m02 = (st.states||[]).find(x=>x.id==='M02')||null; }catch(e){}
+  const maRag = m02 ? m02.rag : 'blue';
+  const ma  = maRag==='amber' || maRag==='red';
+  const maLabel = ma ? '3+ DAYS BELOW' : maRag==='yellow' ? '1–2 DAYS BELOW' : maRag==='green' ? 'ABOVE' : 'NO DATA';
+  const aiOk = ai >= 35, macOk = mac >= 35;
+  return { ma, ai:aiOk, mac:macOk, maLabel, met:[ma,aiOk,macOk].filter(Boolean).length };
+}
 function cc(s){return s<25?'green':s<50?'amber':'red';}
 
 function daysUntil(d){
@@ -694,22 +705,34 @@ function updateScores(){
   document.getElementById('masterScore').className='master-score '+cc(mas);
   document.getElementById('masterStatus').textContent=mas<25?'NOMINAL':mas<50?'WATCH':'ACT NOW';
   document.getElementById('masterStatus').className='master-status '+cc(mas);
-  const t2dist = Math.max(0, 35 - mas);
+  // T2 = three independent conditions, all at once (confirmed framework):
+  //   1. S&P sustained below 50-day MA 3+ sessions  → Dash 5 M02 card AMBER/RED
+  //   2. AI composite ≥35  (Dash 1)
+  //   3. Macro composite ≥35 (Dash 5)
+  // Each side is checked on its own — the master average is NOT the trigger.
+  const t2 = evaluateT2(ai, mac);
   const prox = document.getElementById('t1prox');
-  if(mas >= 35){
-    prox.innerHTML = 'T2 THRESHOLD CROSSED<br>ALL 3 CONDITIONS?';
-    prox.style.color = 'var(--amber)';
-  } else {
-    prox.innerHTML = 'T1 EXECUTED ✓<br>T2 WATCHES AT 35<br>' + t2dist + ' PTS AWAY';
+  const mark = ok => ok ? '✓' : '✗';
+  let trT2 = ''; try{ trT2 = (JSON.parse(localStorage.getItem('rooster_tranches_v1'))||{}).t2 || ''; }catch(e){}
+  if(trT2 === 'yes'){
+    prox.innerHTML = 'T2 EXECUTED ✓<br>WATCHING T3';
     prox.style.color = 'var(--green)';
+  } else if(t2.met === 3){
+    prox.innerHTML = 'T2 FIRE — ALL 3 MET<br>MA ' + mark(t2.ma) + ' · AI ' + ai + ' ' + mark(t2.ai) + ' · MAC ' + mac + ' ' + mark(t2.mac);
+    prox.style.color = 'var(--red)';
+  } else {
+    prox.innerHTML = 'T2: ' + t2.met + ' OF 3 MET<br>MA ' + t2.maLabel + ' ' + mark(t2.ma)
+      + '<br>AI ' + ai + '/35 ' + mark(t2.ai) + ' · MAC ' + mac + '/35 ' + mark(t2.mac);
+    prox.style.color = t2.met >= 2 ? 'var(--amber)' : t2.met === 1 ? 'var(--yellow)' : 'var(--green)';
   }
 
-  // Red signal alert
+  // Red signal count (informational — T2 fires on the three conditions above)
   const reds=AI_SIGS.filter(s=>s.rag==='red').length+MACRO_SIGS.filter(s=>s.rag==='red').length;
   const ra=document.getElementById('redAlert');
-  if(reds>=2){ra.textContent=`${reds} RED SIGNALS — IMMEDIATE T1 FIRE CONDITION`;ra.style.color='var(--red)';}
-  else if(reds===1){ra.textContent='SIG05 RED — 1 MORE RED = IMMEDIATE T1';ra.style.color='var(--amber)';}
-  else{ra.textContent='NO RED SIGNALS — COMPOSITE THRESHOLD ONLY';ra.style.color='var(--text-dim)';}
+  const t2line = `T2 STATUS ${t2.met}/3 — S&P below 50-day MA 3+ sessions ${mark(t2.ma)} · AI ≥35 ${mark(t2.ai)} · Macro ≥35 ${mark(t2.mac)}`;
+  if(t2.met===3){ra.textContent='T2 FIRE CONDITION — ALL THREE MET · '+reds+' RED SIGNALS';ra.style.color='var(--red)';}
+  else if(reds>0){ra.textContent=`${reds} RED SIGNAL${reds>1?'S':''} · `+t2line;ra.style.color='var(--amber)';}
+  else{ra.textContent=t2line;ra.style.color='var(--text-dim)';}
 
   // T2 tranche card + thesis modal both quote the live composites inline
   ['t2AiScore','thesisAiScore'].forEach(id=>{ const el=document.getElementById(id); if(el) el.textContent=ai; });
